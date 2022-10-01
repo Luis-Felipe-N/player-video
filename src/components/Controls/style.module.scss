@@ -1,0 +1,27 @@
+.controls {
+    position: absolute;
+    background-color: rgba(45, 55, 72, 0.7);
+    padding: 1rem;
+    border-radius: 7px;
+
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .duration {
+        color: var(--gray-50);
+        font-family: Poppins;
+        font-size: .8rem;
+        white-space: nowrap;
+    }
+
+    .btnPause {
+
+    }
+}

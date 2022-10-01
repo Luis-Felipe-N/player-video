@@ -1,13 +1,14 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, RefObject, useEffect, useState } from "react";
 import { IPlayerVideo } from "../@types/PlayerVideo";
 
 interface IplayerVideoContext {
     playerState: IPlayerVideo,
     handleTogglePauseVideo: () => void;
+    handleUpdatePercentage: (value: number) => void;
 }
 
 interface IPlayerVideoProvider {
-    children: ReactNode
+    children: ReactNode;
 }
 
 export const playerVideoContext = createContext({} as IplayerVideoContext)
@@ -28,8 +29,15 @@ export function PlayerVideoProvider({ children }: IPlayerVideoProvider) {
         })
     }
 
+    function handleUpdatePercentage(value: number) {
+        setPlayerState({
+            ...playerState,
+            percentage: value
+        })
+    }
+
     return (
-        <playerVideoContext.Provider value={{playerState, handleTogglePauseVideo}}>
+        <playerVideoContext.Provider value={{playerState, handleTogglePauseVideo, handleUpdatePercentage}}>
             {children}
         </playerVideoContext.Provider>
     )

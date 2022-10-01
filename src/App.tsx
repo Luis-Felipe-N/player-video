@@ -1,4 +1,6 @@
-import { PlayerVideo } from "./components/PlayerVideo"
+// import { PlayerVideo } from "./components/Player"
+
+import { PlayerVideo } from "./components/Player"
 
 
 function App() {
