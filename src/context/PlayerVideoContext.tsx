@@ -6,7 +6,7 @@ interface IplayerVideoContext {
     handleTogglePauseVideo: () => void;
     handleUpdatePercentage: (value: number) => void;
     handleUpdateSpeed: (value: number) => void;
-    handleSetFullScreen: () => void;
+    handleSetFullScreen: (state: boolean) => void;
 }
 
 interface IPlayerVideoProvider {
@@ -46,10 +46,10 @@ export function PlayerVideoProvider({ children }: IPlayerVideoProvider) {
         })
     }
 
-    function handleSetFullScreen() {
+    function handleSetFullScreen(state: boolean) {
         setPlayerState({
             ...playerState,
-            isFullScreen: !playerState.isFullScreen
+            isFullScreen: state
         })
     }
 

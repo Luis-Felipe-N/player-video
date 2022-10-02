@@ -4,13 +4,9 @@ import { playerVideoContext } from "../context/PlayerVideoContext"
 
 
 export function usePlayerVideo(videoElement: HTMLVideoElement | null) {
-    const { 
-        playerState: { isPlaying, percentage, speed, isFullScreen },
-        handleTogglePauseVideo, 
-        handleUpdatePercentage, 
-        handleUpdateSpeed, 
-        handleSetFullScreen
-    } = useContext(playerVideoContext)
+    const { playerState, ...functionsPlayer } = useContext(playerVideoContext)
+    const { isFullScreen, isMuted, isPlaying, speed, percentage, durationTime } = playerState
+    const { handleSetFullScreen, handleTogglePauseVideo, handleUpdatePercentage, handleUpdateSpeed } = functionsPlayer
 
     useEffect(() => {
         if (videoElement) {
@@ -42,15 +38,16 @@ export function usePlayerVideo(videoElement: HTMLVideoElement | null) {
         handleUpdateSpeed(value)
     }
 
+    function handleToggleFullScreen() {
+
+    }
+
     return {
-        isPlaying,
-        percentage,
-        speed,
-        isFullScreen,
-        handleTogglePauseVideo,
+        ...playerState,
         handleTimeUpdate,
         handleChangePercentage,
         handlechangeSpeed,
-        handleRequestFullScreen: handleSetFullScreen
+        handleTogglePauseVideo,
+        handleSetFullScreen
     }
 }

@@ -1,8 +1,10 @@
-import { forwardRef, MouseEvent, ReactNode, useEffect, useRef } from "react";
+import { forwardRef, MouseEvent, ReactNode, useCallback, useEffect, useRef } from "react";
 import { usePlayerVideo } from "../../hooks/usePlayerVideo";
+import fscreen from 'fscreen';
 import { Controls } from "./Controls";
 import { PlaybackRate } from "./PlaybackRate";
 import style from './style.module.scss'
+import screenfull from "../../ultis/screenFull";
 
 interface IPlayerVideoProps {
     url: string
@@ -11,15 +13,35 @@ interface IPlayerVideoProps {
 
 export function PlayerVideo({ url }: IPlayerVideoProps) {
     const videoPlayerRef = useRef<HTMLVideoElement>(null)
+    const containerVideoPlayerRef = useRef<HTMLDivElement>(null)
+    const controlsRef = useRef<HTMLDivElement>(null)
 
-    const { isPlaying, isFullScreen, percentage, speed, handleTogglePauseVideo, handleTimeUpdate, handleChangePercentage, handlechangeSpeed, handleRequestFullScreen } = usePlayerVideo(videoPlayerRef.current)
+    const { isPlaying, isFullScreen, percentage, speed, handleTogglePauseVideo, handleTimeUpdate, handleChangePercentage, handlechangeSpeed, handleSetFullScreen } = usePlayerVideo(videoPlayerRef.current)
 
-    function handleToggleFullScreen(html: any) {
-        html.requestFullscreen()
-    }
+    const handleToggleFullscreen = useCallback(() => {
+        if (!screenfull.isEnabled) return;
+
+    
+        if (!isFullScreen) {
+          // @ts-ignore
+          screenfull.request(containerVideoPlayerRef.current).then(() => {
+            // if (!isMobile) return;
+    
+            screen.orientation.lock('landscape');
+          });
+          handleSetFullScreen(true);
+        } else {
+          screenfull.exit().then(() => {
+            // if (!isMobile) return;
+    
+            screen.orientation.lock('portrait');
+          });
+          handleSetFullScreen(false);
+        }
+      }, [isFullScreen]);
 
     return (
-        <div className={isFullScreen ? `${style.player} ${style.playerFullscreen}` : style.player}>  
+        <div ref={containerVideoPlayerRef} className={style.player} onDoubleClick={handleToggleFullscreen}>  
             <video
                 ref={videoPlayerRef}
                 className={style.videoPlayer}
@@ -28,11 +50,11 @@ export function PlayerVideo({ url }: IPlayerVideoProps) {
                 >
                     <source src={url}  />
             </video>
-
-            <div className={style.containerControls}>
+  
+            <div className={style.containerControls} ref={controlsRef}>
                 <PlaybackRate currentSpeed={speed} onChangePlaybackRate={handlechangeSpeed} />
                 <Controls 
-                    onRequestFullScreen={handleRequestFullScreen}
+                    onRequestFullScreen={handleToggleFullscreen}
                     onTogglePauseVideo={handleTogglePauseVideo}
                     onChangePercentage={handleChangePercentage}
                     isPlaying={isPlaying}
@@ -42,5 +64,6 @@ export function PlayerVideo({ url }: IPlayerVideoProps) {
                 />
             </div>
         </div>
+
     )
 }

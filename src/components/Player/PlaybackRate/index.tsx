@@ -28,7 +28,7 @@ export function PlaybackRate({onChangePlaybackRate, currentSpeed}: IPlaybackRate
                     <strong>Velocidade</strong>
                     <ul>
                         {SPEEDS.map((speed) => (
-                            <li>
+                            <li key={speed} >
                                 {currentSpeed == speed && <FaCheck />}
                                 <button onClick={() => onChangePlaybackRate(speed)}>{speed}</button>
                             </li>
