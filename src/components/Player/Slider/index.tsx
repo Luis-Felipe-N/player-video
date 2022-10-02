@@ -11,7 +11,9 @@ interface ISliderProps {
 
 export function Slider({ percentage, currentTime, onChangePercentage }: ISliderProps){
 
-
+    function handleChangePercentage(target: any) {
+        onChangePercentage(Number(target.value))
+    }
 
     return (
         <div className={style.containerSlider}>
@@ -21,7 +23,7 @@ export function Slider({ percentage, currentTime, onChangePercentage }: ISliderP
                 className={style.slider}
                 type="range"
                 value={percentage}
-                onInput={({target}) => onChangePercentage(Number(target.value))}
+                onInput={({target}) => handleChangePercentage(target)}
             />
 
             {/* <span style={{left: `${percentage}%`}} className={style.currentTime}>{convertSecondInMinute(currentTime)}</span> */}

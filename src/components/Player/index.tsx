@@ -17,7 +17,18 @@ export function PlayerVideo({ url }: IPlayerVideoProps) {
     const videoPlayerRef = useRef<HTMLVideoElement>(null)
     const containerVideoPlayerRef = useRef<HTMLDivElement>(null)
 
-    const { isPlaying, isFullScreen, percentage, speed, handleTogglePauseVideo, handleChangePercentage, handlechangeSpeed, handleSetFullScreen, handleTimeUpdate } = usePlayerVideo(videoPlayerRef.current)
+    const { 
+      isPlaying, 
+      isFullScreen, 
+      percentage, 
+      speed, 
+      handleTogglePauseVideo, 
+      handleChangePercentage, 
+      handlechangeSpeed, 
+      handleSetFullScreen, 
+      handleTimeUpdate,
+      handleChangeVolume
+    } = usePlayerVideo(videoPlayerRef.current)
 
     let hiddenControlsSetInterval: number | undefined
 
@@ -77,6 +88,7 @@ export function PlayerVideo({ url }: IPlayerVideoProps) {
             <div className={showControls ? `${style.containerControls} ${style.showControls}` : style.containerControls} >
                 <PlaybackRate currentSpeed={speed} onChangePlaybackRate={handlechangeSpeed} />
                 <Controls 
+                    onChangeVolume={handleChangeVolume}
                     onRequestFullScreen={handleToggleFullscreen}
                     onTogglePauseVideo={handleTogglePauseVideo}
                     onChangePercentage={handleChangePercentage}

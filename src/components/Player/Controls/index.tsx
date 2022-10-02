@@ -9,6 +9,7 @@ import { ButtonPlay } from "./ButtonPlay";
 interface IControlsProps {
     onTogglePauseVideo: () => void;
     onChangePercentage: (event: number) => void;
+    onChangeVolume: (event: number) => void;
     onRequestFullScreen: () => void;
     percentage: number;
     duration: number;
@@ -16,7 +17,7 @@ interface IControlsProps {
     isPlaying: boolean;
 }
 
-export function Controls({ isPlaying, duration, currentTime, onTogglePauseVideo, onChangePercentage, onRequestFullScreen, percentage }: IControlsProps) {
+export function Controls({ isPlaying, duration, currentTime, onChangeVolume, onTogglePauseVideo, onChangePercentage, onRequestFullScreen, percentage }: IControlsProps) {
     console.log('OI')
     return (
         <div className={style.controls}>
@@ -36,7 +37,9 @@ export function Controls({ isPlaying, duration, currentTime, onTogglePauseVideo,
             </span>
 
             <div className={style.options}>
-                <ButtonVolume />
+                <ButtonVolume
+                    onChangeVolume={onChangeVolume}
+                />
                 <button onClick={onRequestFullScreen}>
                     <AiOutlineExpand size={20} />
                 </button>

@@ -1,9 +1,17 @@
-import { memo } from "react";
+import { FormEvent, memo } from "react";
 import { FaVolumeUp } from "react-icons/fa";
 import style from './style.module.scss'
 
+interface IButtonVolumeProps {
+    onChangeVolume: (value: number) => void;
+}
 
-function ButtonVolumeElement() {
+function ButtonVolumeElement({ onChangeVolume }: IButtonVolumeProps) {
+
+    function handleChangeVolume(target: any) {
+        onChangeVolume(Number(target.value))
+    }
+
     return (
         <div className={style.containerVolume}>
             <button>
@@ -11,7 +19,7 @@ function ButtonVolumeElement() {
             </button>
 
             <div className={style.volume}>
-                <input type="range" />
+                <input onInput={(event) => handleChangeVolume(event.target)} type="range" />
             </div>
         </div>
     )

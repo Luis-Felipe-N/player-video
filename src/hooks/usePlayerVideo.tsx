@@ -38,8 +38,11 @@ export function usePlayerVideo(videoElement: HTMLVideoElement | null) {
         handleUpdateSpeed(value)
     }
 
-    function handleToggleFullScreen() {
-
+    function handleChangeVolume(value: number) {
+        if (videoElement) {
+            // const volume = value
+            videoElement.volume = value
+        }
     }
 
     return {
@@ -48,6 +51,7 @@ export function usePlayerVideo(videoElement: HTMLVideoElement | null) {
         handleChangePercentage,
         handlechangeSpeed,
         handleTogglePauseVideo,
-        handleSetFullScreen
+        handleSetFullScreen,
+        handleChangeVolume
     }
 }
