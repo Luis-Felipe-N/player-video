@@ -16,6 +16,7 @@ a {
   --gray-900: #171923;
   --gray-800: #1F2029;
   --gray-700: #353646;
+  --gray-700-alpha: rgba(45, 55, 72, 0.7);
   --gray-600: #4B4D63;
   --gray-500: #616480;
   --gray-400: #797D9A;
@@ -41,4 +42,50 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', sans-serif;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background-color: #eeeeec;
+  border-radius: 0.5rem;
+  height: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  appearance: none;
+  margin-top: -6.5px; 
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type=range]:focus::-webkit-slider-thumb {
+  outline: 3px solid #ffffff;
+  outline-offset: 0.125rem;
+}
+
+
+
+input[type=range]::-moz-range-track {
+  background-color: #eeeeec;
+  border-radius: 0.5rem;
+  height: 3px;
+}
+
+input[type=range]::-moz-range-thumb {
+  background-color: #ffffff;
+  border: none; 
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type=range]:focus::-moz-range-thumb{
+  outline: 3px solid #ffffff;
+  outline-offset: 0.125rem;
 }

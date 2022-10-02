@@ -5,7 +5,7 @@ import { playerVideoContext } from "../context/PlayerVideoContext"
 
 export function usePlayerVideo(videoElement: HTMLVideoElement | null) {
     const { playerState, ...functionsPlayer } = useContext(playerVideoContext)
-    const { isFullScreen, isMuted, isPlaying, speed, percentage, durationTime } = playerState
+    const { isPlaying, speed } = playerState
     const { handleSetFullScreen, handleTogglePauseVideo, handleUpdatePercentage, handleUpdateSpeed } = functionsPlayer
 
     useEffect(() => {

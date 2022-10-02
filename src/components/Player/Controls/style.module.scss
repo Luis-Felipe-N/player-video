@@ -1,7 +1,7 @@
 .controls {
     z-index: 9999;
     backdrop-filter: bluer(2px);
-    background-color: rgba(45, 55, 72, 0.7);
+    background-color: var(--gray-700-alpha);
     padding: 1rem;
     border-radius: 7px;
     

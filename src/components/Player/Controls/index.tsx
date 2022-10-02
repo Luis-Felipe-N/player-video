@@ -3,6 +3,8 @@ import { AiOutlineExpand } from "react-icons/ai"
 import style from './style.module.scss'
 import { convertSecondInMinute } from "../../../ultis/convertSecondInMinute";
 import { Slider } from "../Slider";
+import { ButtonVolume } from './ButtonVolume'
+import { ButtonPlay } from "./ButtonPlay";
 
 interface IControlsProps {
     onTogglePauseVideo: () => void;
@@ -15,18 +17,13 @@ interface IControlsProps {
 }
 
 export function Controls({ isPlaying, duration, currentTime, onTogglePauseVideo, onChangePercentage, onRequestFullScreen, percentage }: IControlsProps) {
+    console.log('OI')
     return (
         <div className={style.controls}>
-            <button 
-                onClick={onTogglePauseVideo}
-                className={style.btnPause}
-            >
-                { isPlaying ? (
-                    <FaPause size={20} />
-                    ) : (
-                    <FaPlay size={20} />
-                )}
-            </button>
+            <ButtonPlay 
+                isPlaying={isPlaying}
+                onTogglePauseVideo={onTogglePauseVideo}
+            />
 
             <Slider
                 currentTime={currentTime}
@@ -39,9 +36,7 @@ export function Controls({ isPlaying, duration, currentTime, onTogglePauseVideo,
             </span>
 
             <div className={style.options}>
-                <button>
-                    <FaVolumeUp size={20} />
-                </button>
+                <ButtonVolume />
                 <button onClick={onRequestFullScreen}>
                     <AiOutlineExpand size={20} />
                 </button>

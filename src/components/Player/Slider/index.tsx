@@ -21,10 +21,10 @@ export function Slider({ percentage, currentTime, onChangePercentage }: ISliderP
                 className={style.slider}
                 type="range"
                 value={percentage}
-                onChange={({target}) => onChangePercentage(Number(target.value))}
+                onInput={({target}) => onChangePercentage(Number(target.value))}
             />
 
-            <span style={{left: `${percentage}%`}} className={style.currentTime}>{convertSecondInMinute(currentTime)}</span>
+            {/* <span style={{left: `${percentage}%`}} className={style.currentTime}>{convertSecondInMinute(currentTime)}</span> */}
         </div>
     )
 }

@@ -8,7 +8,7 @@
         cursor: pointer;
     }
 
-    .videoPlayer:hover + .containerControls, .containerControls:hover {
+    .containerControls.showControls, .containerControls:hover {
         visibility: visible;
         opacity: 1;
     }
