@@ -1,10 +1,10 @@
-import { forwardRef, MouseEvent, ReactNode, useCallback, useEffect, useRef } from "react";
-import { usePlayerVideo } from "../../hooks/usePlayerVideo";
-import fscreen from 'fscreen';
+import { useCallback, useRef } from "react";
 import { Controls } from "./Controls";
+import { usePlayerVideo } from "../../hooks/usePlayerVideo";
 import { PlaybackRate } from "./PlaybackRate";
-import style from './style.module.scss'
 import screenfull from "../../ultis/screenFull";
+import { isMobile } from "../../ultis/checkDevice";
+import style from './style.module.scss'
 
 interface IPlayerVideoProps {
     url: string
@@ -25,14 +25,14 @@ export function PlayerVideo({ url }: IPlayerVideoProps) {
         if (!isFullScreen) {
           // @ts-ignore
           screenfull.request(containerVideoPlayerRef.current).then(() => {
-            // if (!isMobile) return;
+            if (!isMobile) return;
     
             screen.orientation.lock('landscape');
           });
           handleSetFullScreen(true);
         } else {
           screenfull.exit().then(() => {
-            // if (!isMobile) return;
+            if (!isMobile) return;
     
             screen.orientation.lock('portrait');
           });
