@@ -29,4 +29,9 @@
         line-height: 0;
         cursor: pointer;
     }
+
+    .options {
+        display: flex;
+        gap: .5rem;
+    }
 }

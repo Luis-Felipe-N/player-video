@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react"
-import { usePlayerVideo } from "../../hooks/usePlayerVideo"
-import { convertSecondInMinute } from "../../ultis/convertSecondInMinute";
+import { usePlayerVideo } from "../../../hooks/usePlayerVideo"
+import { convertSecondInMinute } from "../../../ultis/convertSecondInMinute";
 import style from './style.module.scss'
 
 interface ISliderProps {
@@ -14,7 +14,7 @@ export function Slider({ percentage, currentTime, onChangePercentage }: ISliderP
 
 
     return (
-        <>
+        <div className={style.containerSlider}>
             <input 
                 max={100}
                 min={0}
@@ -24,7 +24,7 @@ export function Slider({ percentage, currentTime, onChangePercentage }: ISliderP
                 onChange={({target}) => onChangePercentage(Number(target.value))}
             />
 
-            <span>{convertSecondInMinute(currentTime)}</span>
-        </>
+            <span style={{left: `${percentage}%`}} className={style.currentTime}>{convertSecondInMinute(currentTime)}</span>
+        </div>
     )
 }

@@ -1,6 +1,6 @@
-import { forwardRef, ReactNode, useEffect, useRef } from "react";
+import { forwardRef, MouseEvent, ReactNode, useEffect, useRef } from "react";
 import { usePlayerVideo } from "../../hooks/usePlayerVideo";
-import { Controls } from "../Controls";
+import { Controls } from "./Controls";
 import { PlaybackRate } from "./PlaybackRate";
 import style from './style.module.scss'
 
@@ -12,12 +12,14 @@ interface IPlayerVideoProps {
 export function PlayerVideo({ url }: IPlayerVideoProps) {
     const videoPlayerRef = useRef<HTMLVideoElement>(null)
 
-    const { isPlaying, percentage, speed, handleTogglePauseVideo, handleTimeUpdate, handleChangePercentage, handlechangeSpeed } = usePlayerVideo(videoPlayerRef.current)
+    const { isPlaying, isFullScreen, percentage, speed, handleTogglePauseVideo, handleTimeUpdate, handleChangePercentage, handlechangeSpeed, handleRequestFullScreen } = usePlayerVideo(videoPlayerRef.current)
 
-    console.log('rederizando player')
+    function handleToggleFullScreen(html: any) {
+        html.requestFullscreen()
+    }
 
     return (
-        <div className={style.player}>  
+        <div className={isFullScreen ? `${style.player} ${style.playerFullscreen}` : style.player}>  
             <video
                 ref={videoPlayerRef}
                 className={style.videoPlayer}
@@ -30,6 +32,7 @@ export function PlayerVideo({ url }: IPlayerVideoProps) {
             <div className={style.containerControls}>
                 <PlaybackRate currentSpeed={speed} onChangePlaybackRate={handlechangeSpeed} />
                 <Controls 
+                    onRequestFullScreen={handleRequestFullScreen}
                     onTogglePauseVideo={handleTogglePauseVideo}
                     onChangePercentage={handleChangePercentage}
                     isPlaying={isPlaying}

@@ -4,4 +4,5 @@ export interface IPlayerVideo {
     percentage: number;
     durationTime: number;
     speed: number;
+    isFullScreen: boolean
 }

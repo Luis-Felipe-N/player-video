@@ -1,20 +1,20 @@
-import { usePlayerVideo } from "../../hooks/usePlayerVideo"
-import { FaPause, FaPlay, FaVolumeUp } from "react-icons/fa";
+import { FaPause, FaPlay, FaVolumeUp, FaExpandAlt } from "react-icons/fa";
+import { AiOutlineExpand } from "react-icons/ai"
 import style from './style.module.scss'
+import { convertSecondInMinute } from "../../../ultis/convertSecondInMinute";
 import { Slider } from "../Slider";
-import { ChangeEvent } from "react";
-import { convertSecondInMinute } from "../../ultis/convertSecondInMinute";
 
 interface IControlsProps {
     onTogglePauseVideo: () => void;
-    onChangePercentage: (event: number) => void
+    onChangePercentage: (event: number) => void;
+    onRequestFullScreen: () => void;
     percentage: number;
     duration: number;
     currentTime: number
     isPlaying: boolean;
 }
 
-export function Controls({ isPlaying, duration, currentTime, onTogglePauseVideo, onChangePercentage, percentage }: IControlsProps) {
+export function Controls({ isPlaying, duration, currentTime, onTogglePauseVideo, onChangePercentage, onRequestFullScreen, percentage }: IControlsProps) {
     return (
         <div className={style.controls}>
             <button 
@@ -28,7 +28,7 @@ export function Controls({ isPlaying, duration, currentTime, onTogglePauseVideo,
                 )}
             </button>
 
-            <Slider 
+            <Slider
                 currentTime={currentTime}
                 percentage={percentage}
                 onChangePercentage={onChangePercentage}
@@ -41,6 +41,9 @@ export function Controls({ isPlaying, duration, currentTime, onTogglePauseVideo,
             <div className={style.options}>
                 <button>
                     <FaVolumeUp size={20} />
+                </button>
+                <button onClick={onRequestFullScreen}>
+                    <AiOutlineExpand size={20} />
                 </button>
             </div>
         </div>
