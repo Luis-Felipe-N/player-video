@@ -5,6 +5,7 @@ interface IplayerVideoContext {
     playerState: IPlayerVideo,
     handleTogglePauseVideo: () => void;
     handleUpdatePercentage: (value: number) => void;
+    handleUpdateSpeed: (value: number) => void;
 }
 
 interface IPlayerVideoProvider {
@@ -36,8 +37,15 @@ export function PlayerVideoProvider({ children }: IPlayerVideoProvider) {
         })
     }
 
+    function handleUpdateSpeed(value: number) {
+        setPlayerState({
+            ...playerState,
+            speed: value
+        })
+    }
+
     return (
-        <playerVideoContext.Provider value={{playerState, handleTogglePauseVideo, handleUpdatePercentage}}>
+        <playerVideoContext.Provider value={{playerState, handleTogglePauseVideo, handleUpdatePercentage, handleUpdateSpeed}}>
             {children}
         </playerVideoContext.Provider>
     )

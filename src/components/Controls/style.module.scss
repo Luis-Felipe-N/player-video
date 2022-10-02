@@ -1,9 +1,10 @@
 .controls {
-    position: absolute;
+    backdrop-filter: bluer(2px);
     background-color: rgba(45, 55, 72, 0.7);
     padding: 1rem;
     border-radius: 7px;
-
+    
+    position: absolute;
     bottom: 1rem;
     left: 1rem;
     right: 1rem;
@@ -21,7 +22,11 @@
         white-space: nowrap;
     }
 
-    .btnPause {
-
+    button {
+        background-color: transparent;
+        border: 0;
+        color: var(--gray-50);
+        line-height: 0;
+        cursor: pointer;
     }
 }

@@ -1,17 +1,27 @@
 import {  useContext, useEffect } from "react"
-import { IPlayerVideo } from "../@types/PlayerVideo"
 import { playerVideoContext } from "../context/PlayerVideoContext"
 
 
 
 export function usePlayerVideo(videoElement: HTMLVideoElement | null) {
-    const {handleTogglePauseVideo, handleUpdatePercentage,  playerState: { isPlaying, percentage }} = useContext(playerVideoContext)
+    const { 
+        handleTogglePauseVideo, 
+        handleUpdatePercentage, 
+        handleUpdateSpeed, 
+        playerState: { isPlaying, percentage, speed }
+    } = useContext(playerVideoContext)
 
     useEffect(() => {
         if (videoElement) {
             isPlaying ? videoElement.play() : videoElement.pause()
         }
     }, [isPlaying, videoElement])
+
+    useEffect(() => {
+        if (videoElement) {
+            videoElement.playbackRate = speed
+        }
+    }, [videoElement, speed])
 
     function handleTimeUpdate() {
         if (videoElement) {
@@ -23,16 +33,21 @@ export function usePlayerVideo(videoElement: HTMLVideoElement | null) {
     function handleChangePercentage(value: number) {
         if (videoElement) {
             const newDuration = videoElement.duration / 100 * value 
-
             videoElement.currentTime = newDuration
         }
+    }
+
+    function handlechangeSpeed(value: number) {
+        handleUpdateSpeed(value)
     }
 
     return {
         isPlaying,
         percentage,
+        speed,
         handleTogglePauseVideo,
         handleTimeUpdate,
-        handleChangePercentage
+        handleChangePercentage,
+        handlechangeSpeed
     }
 }

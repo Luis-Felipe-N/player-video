@@ -3,8 +3,8 @@
 
     .videoPlayer {
         width: 62.5rem;
-        aspect-ratio: 16 / 9;
         // width: 100%;
+        aspect-ratio: 16 / 9;
         border-radius: 10px;
         cursor: pointer;
     }
@@ -20,11 +20,5 @@
     //     transition: .5s;
     // }
 
-    button {
-        background-color: transparent;
-        border: 0;
-        color: var(--gray-50);
-        line-height: 0;
-        cursor: pointer;
-    }
+    
 }

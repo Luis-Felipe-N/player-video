@@ -14,7 +14,7 @@ interface IControlsProps {
     isPlaying: boolean;
 }
 
-export function Controls({ isPlaying, duration,currentTime, onTogglePauseVideo, onChangePercentage, percentage }: IControlsProps) {
+export function Controls({ isPlaying, duration, currentTime, onTogglePauseVideo, onChangePercentage, percentage }: IControlsProps) {
     return (
         <div className={style.controls}>
             <button 
@@ -29,7 +29,7 @@ export function Controls({ isPlaying, duration,currentTime, onTogglePauseVideo, 
             </button>
 
             <Slider 
-                duration={duration || 0}
+                currentTime={currentTime}
                 percentage={percentage}
                 onChangePercentage={onChangePercentage}
             />

@@ -5,11 +5,11 @@ import style from './style.module.scss'
 
 interface ISliderProps {
     percentage: number;
-    duration: number;
+    currentTime: number;
     onChangePercentage: (event: number) => void
 }
 
-export function Slider({ percentage, duration, onChangePercentage }: ISliderProps){
+export function Slider({ percentage, currentTime, onChangePercentage }: ISliderProps){
 
 
 
@@ -24,7 +24,7 @@ export function Slider({ percentage, duration, onChangePercentage }: ISliderProp
                 onChange={({target}) => onChangePercentage(Number(target.value))}
             />
 
-            
+            <span>{convertSecondInMinute(currentTime)}</span>
         </>
     )
 }
