@@ -18,7 +18,7 @@ interface IControlsProps {
 }
 
 export function Controls({ isPlaying, duration, currentTime, onChangeVolume, onTogglePauseVideo, onChangePercentage, onRequestFullScreen, percentage }: IControlsProps) {
-    console.log('OI')
+    
     return (
         <div className={style.controls}>
             <ButtonPlay 

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { BsFillGearFill } from 'react-icons/bs'
 import { FaCheck } from 'react-icons/fa'
+import { useClickOutSide } from '../../../hooks/useClickOutSide';
 import style from './style.module.scss'
 
 interface IPlaybackRateProps {
@@ -12,9 +13,19 @@ const SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
 
 export function PlaybackRate({onChangePlaybackRate, currentSpeed}: IPlaybackRateProps) {
     const [openPlaybackRate, setOpenPlaybackRate] = useState(false)
+    const controlsPlayRate = useRef<HTMLDivElement>(null)
+    const {clickOutSide} = useClickOutSide()
+
+    if (openPlaybackRate && controlsPlayRate.current) {
+
+        clickOutSide(controlsPlayRate.current, () => {
+            setOpenPlaybackRate(false)
+        })
+    }
+
     return (
         <>
-            <div className={style.containerConf}>
+            <div className={style.containerConf} ref={controlsPlayRate}>
                 <button 
                     className={style.btnConfig}
                     title="Configurações"

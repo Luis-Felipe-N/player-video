@@ -9,7 +9,7 @@ interface ISliderProps {
     onChangePercentage: (event: number) => void
 }
 
-export function Slider({ percentage, currentTime, onChangePercentage }: ISliderProps){
+export function Slider({ percentage, onChangePercentage }: ISliderProps){
 
     function handleChangePercentage(target: any) {
         onChangePercentage(Number(target.value))
