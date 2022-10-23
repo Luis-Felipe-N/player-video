@@ -1,7 +1,9 @@
 .player {
     position: relative;
+    margin: 1rem;
+
     .videoPlayer {
-        // width: 62.5rem;
+        max-width: 100%;
         width: 100%;
         aspect-ratio: 16 / 9;
         border-radius: 10px;
@@ -13,11 +15,11 @@
         opacity: 1;
     }
 
-    .containerControls {
-        visibility: hidden;
-        opacity: 0;
-        transition: .5s;
-    }    
+    // .containerControls {
+    //     visibility: hidden;
+    //     opacity: 0;
+    //     transition: .5s;
+    // }    
     
 }
 

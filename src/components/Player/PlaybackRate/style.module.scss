@@ -18,14 +18,13 @@
     }
 
     .config {
-        visibility: hidden;
-        opacity: 0;
-        transition: .5s;
+  
     }
 
     .config.active {
         visibility: visible;
         opacity: 1;
+        min-height: 100%;
     }
 
     .config {
@@ -34,6 +33,10 @@
         padding: .8rem;
         border-radius: 5px;
         color: var(--gray-50);
+        visibility: hidden;
+        opacity: 0;
+        transition: .5s;
+        min-height: 0;
 
         ul {
             margin-top: .5rem;

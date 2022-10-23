@@ -1,26 +1,30 @@
 .controls {
-    z-index: 9999;
-    backdrop-filter: bluer(2px);
-    background-color: var(--gray-700-alpha);
+    z-index: 10;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 10%, rgba(0,0,0,0));
     padding: 1rem;
-    border-radius: 7px;
     
     position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    right: 1rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     max-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+
     gap: 1rem;
+
+    div {
+        margin-top: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
     .duration {
         color: var(--gray-50);
         font-family: Poppins;
         font-size: .8rem;
         white-space: nowrap;
+        width: 4rem;
     }
 
     button {

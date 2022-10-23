@@ -21,28 +21,29 @@ export function Controls({ isPlaying, duration, currentTime, onChangeVolume, onT
     
     return (
         <div className={style.controls}>
-            <ButtonPlay 
-                isPlaying={isPlaying}
-                onTogglePauseVideo={onTogglePauseVideo}
-            />
-
             <Slider
                 currentTime={currentTime}
                 percentage={percentage}
                 onChangePercentage={onChangePercentage}
             />
-
-            <span className={style.duration}>
-                {convertSecondInMinute(currentTime)} / {convertSecondInMinute(duration)}
-            </span>
-
-            <div className={style.options}>
-                <ButtonVolume
-                    onChangeVolume={onChangeVolume}
+            <div>
+                <span className={style.duration}>
+                    {convertSecondInMinute(currentTime)} / {convertSecondInMinute(duration)}
+                </span>
+                <ButtonPlay 
+                    isPlaying={isPlaying}
+                    onTogglePauseVideo={onTogglePauseVideo}
                 />
-                <button onClick={onRequestFullScreen}>
-                    <AiOutlineExpand size={20} />
-                </button>
+
+
+                <div className={style.options}>
+                    <ButtonVolume
+                        onChangeVolume={onChangeVolume}
+                    />
+                    <button onClick={onRequestFullScreen}>
+                        <AiOutlineExpand size={20} />
+                    </button>
+                </div>
             </div>
         </div>
     )

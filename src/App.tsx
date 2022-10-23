@@ -1,13 +1,16 @@
-// import { PlayerVideo } from "./components/Player"
-
+import style from "./style/Player.module.scss"
+import { useState } from "react"
 import { PlayerVideo } from "./components/Player"
 
 
 function App() {
-
+  const [source, setSource] = useState('https://artplayer.org/assets/sample/video.mp4')
 
   return (
-    <PlayerVideo url="https://artplayer.org/assets/sample/video.mp4" />
+    <div className={style.containerPlayer}>
+      <PlayerVideo url={source} />
+      <input type="text" value={source} onChange={({target})=>setSource(target.value)} />
+    </div>
   )
 }
 
