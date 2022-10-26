@@ -1,6 +1,7 @@
 import { FormEvent, memo, useEffect, useRef, useState } from "react";
 import { FaVolumeUp } from "react-icons/fa";
 import { useClickOutSide } from "../../../../hooks/useClickOutSide";
+import { SliderRadixUI } from "../../../SliderRadixUI";
 // import { Us } from "../../../../hooks/useClickOutSide";
 import style from './style.module.scss'
 
@@ -24,8 +25,6 @@ function ButtonVolumeElement({ onChangeVolume }: IButtonVolumeProps) {
         })
     }
 
-
-
     return (
         <div className={style.containerVolume} ref={controlsVolumeRef}>
             <button
@@ -35,7 +34,15 @@ function ButtonVolumeElement({ onChangeVolume }: IButtonVolumeProps) {
             </button>
 
             <div className={showVolumeControls ? `${style.volume} ${style.showVolumeControls}`: style.volume}>
-                <input value={volume} onChange={({target}) => setVolume(Number(target.value))} type="range" min={0} max={1} step={0.1}/>
+                <SliderRadixUI
+                    // value={[volume]}
+                    handleChangeValue={([value]) => setVolume(value)}
+                    min={0} 
+                    max={1} 
+                    step={0.1} 
+                    defaultValue={[1]}
+                    aria-label="Tempo de video"
+                />
             </div>
         </div>
     )

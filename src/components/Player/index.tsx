@@ -81,6 +81,7 @@ export function PlayerVideo({ url }: IPlayerVideoProps) {
                 className={style.videoPlayer}
                 onClick={handleTogglePauseVideo}
                 onTimeUpdate={handleTimeUpdate}
+                autoPlay
                 >
                     <source src={url}  />
             </video>

@@ -5,15 +5,15 @@
     .volume {
         visibility: hidden;
         opacity: 0;
-        transition: .2s opacity bottom;
+        transition: 2s opacity bottom;
         height: 0;
         bottom: 1.5rem;
 
         border-radius: 5px;
         position: absolute;
-        transform:  translateX(-50%);
-        transform-origin: center;
-        left: 0;
+        transform: rotate(-90deg) ;
+        transform-origin: left;
+        left: .5rem;
 
         background-color: var(--gray-700-alpha);
 

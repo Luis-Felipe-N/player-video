@@ -1,11 +1,15 @@
 .player {
     position: relative;
     margin: 1rem;
-
+    display: flex;
+    align-items: center;
+    
     .videoPlayer {
+        overflow: hidden;
         max-width: 100%;
         width: 100%;
-        aspect-ratio: 16 / 9;
+        height: auto;
+        // aspect-ratio: 16 / 9;    
         border-radius: 10px;
         cursor: pointer;
     }
@@ -15,20 +19,9 @@
         opacity: 1;
     }
 
-    // .containerControls {
-    //     visibility: hidden;
-    //     opacity: 0;
-    //     transition: .5s;
-    // }    
-    
+        .containerControls {
+        visibility: hidden;
+        opacity: 0;
+        transition: .5s;
+    }    
 }
-
-// .playerFullscreen {
-//     width: 100vw;
-//     height: 100vh;
-//     transition: .2s;
-//     object-fit: cover;
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-// }
